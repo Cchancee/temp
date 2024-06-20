@@ -1,0 +1,26 @@
+
+version: '3.8'
+
+services:
+  web:
+    build: ./web
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    networks:
+      - backend
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: greenloop
+    ports:
+      - "3306:3306"
+    networks:
+      - backend
+
+networks:
+  backend:
+
